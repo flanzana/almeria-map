@@ -1,0 +1,76 @@
+.App {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  max-height: 100vh;
+}
+
+/* ---------------------- H E A D E R ---------------------- */
+.App-header {
+  background-color: #222;
+  height: 10vh;
+  min-height: 40px;
+  width: 100%;
+  color: white;
+	position: fixed;
+	top: 0;
+	z-index: 1000;
+  display: flex;
+  justify-content: center; /* align horizontal */
+  align-items: center; /* align vertical */
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+#hamburger-icon {
+  color: yellow;
+  font-size: 30px;
+  text-align: left;
+  display: none;
+}
+
+
+/* ---------------------- F O O T E R ---------------------- */
+.App-footer {
+  background-color: #222;
+  height: 5vh;
+  min-height: 20px;
+  color: white;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  z-index: 1000;
+  font-size: 0.6em;
+  display: flex;
+  justify-content: center; /* align horizontal */
+  align-items: center; /* align vertical */
+}
+
+
+/* ---------------------- M A P ---------------------- */
+#map-container {
+  margin-top: 10vh;
+  margin-bottom: 5vh;
+}
+
+.container-element {
+  height: 85vh;
+  width: 100%;
+}
+
+.map-element {
+  height: 100%;
+}
+
+
+/* ---------------------- M E N U ---------------------- */
+#menu-container {
+
+}
+
+
+
