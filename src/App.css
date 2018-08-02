@@ -13,10 +13,10 @@
   height: 10vh;
   min-height: 40px;
   width: 100%;
-  color: white;
+  color: #ffffff;
 	position: fixed;
 	top: 0;
-	z-index: 1000;
+	z-index: 900;
   display: flex;
   justify-content: center; /* align horizontal */
   align-items: center; /* align vertical */
@@ -27,10 +27,13 @@
 }
 
 #hamburger-icon {
-  color: yellow;
+  background-color: #222;
+  color: #ffffff;
   font-size: 30px;
-  text-align: left;
-  display: none;
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  z-index: 1000;
 }
 
 
@@ -50,11 +53,23 @@
   align-items: center; /* align vertical */
 }
 
+/* ---------------------- M A I N ---------------------- */
+.App-main {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10vh;
+  margin-bottom: 5vh;
+}
+
+.App-map {
+  position: relative;
+  width: 100%;
+}
+
 
 /* ---------------------- M A P ---------------------- */
 #map-container {
-  margin-top: 10vh;
-  margin-bottom: 5vh;
+
 }
 
 .container-element {
@@ -68,9 +83,18 @@
 
 
 /* ---------------------- M E N U ---------------------- */
-#menu-container {
-
+.App-menu {
+  width: 200px;
+  z-index: 800;
+  background-color: green;
+  height: 85vh;
 }
 
+.App-menu-hidden {
+  width: 0;
+}
 
+.App-menu, .App-menu-hidden {
+  transition: all .5s ease-in-out;
+}
 
