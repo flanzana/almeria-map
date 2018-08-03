@@ -5,6 +5,10 @@ import Map from './components/Map.js'
 import Menu from './components/Menu.js'
 
 class App extends Component {
+  markers = [];
+
+  centerOfMap = { lat: 36.838647, lng: -2.46002 };
+
   state = {
     menuShow: true
   }
@@ -13,6 +17,11 @@ class App extends Component {
   toggleMenu = () => {
     const menuShow = this.state.menuShow;
     this.setState({menuShow : !menuShow})
+  }
+
+  /* Get places from Foursquare */
+  getPlaces() {
+    fetch()
   }
 
   render() {
@@ -31,7 +40,9 @@ class App extends Component {
 
           {menuShow === true ? <Menu/> : <div className="App-menu-hidden"></div>}
 
-          <section className="App-map"><Map/></section>
+          <section className="App-map">
+            <Map/>
+          </section>
         </div>
 
         <footer className="App-footer">
