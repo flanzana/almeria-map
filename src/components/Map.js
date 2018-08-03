@@ -6,24 +6,12 @@ import { withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
 - https://tomchentw.github.io/react-google-maps/
 */
 
-const lugares = [
-	{
-		title: 'almer 1',
-		location: {lat: 36.833, lng: -2.4604}
-	},{
-		title: 'almer 2',
-		location: {lat: 36.843, lng: -2.4704}
-	}
-];
-
-console.log(lugares);
-
 const AlmeriaMap = withGoogleMap(props => (
 	<GoogleMap
-		defaultCenter = { { lat: 36.838647, lng: -2.46002 } }
-		defaultZoom = { 14 }
+		defaultCenter = { props.mapCenter }
+		defaultZoom = { props.mapZoom }
 	>
-		{props.isMarkerShown && lugares.map(lugar => {
+		{props.isMarkerShown && props.lugares.map(lugar => {
 			return (
 				<Marker
 					name={lugar.title}
@@ -37,16 +25,22 @@ const AlmeriaMap = withGoogleMap(props => (
 
 class Map extends Component {
 	state = {
-		isMarkerShown: true
+		isMarkerShown: true,
 	}
 
 	render() {
+		const { isMarkerShown } = this.state;
+		const { lugares, mapCenter, mapZoom } = this.props;
+
 		return(
 			<div id="map-container">
 				<AlmeriaMap
 					containerElement={ <div className="container-element"/> }
 					mapElement={ <div className="map-element"/> }
-					isMarkerShown={this.state.isMarkerShown}
+					isMarkerShown={isMarkerShown}
+					lugares={lugares}
+					mapCenter={mapCenter}
+          mapZoom={mapZoom}
 				/>
 
 			</div>
