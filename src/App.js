@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-//import logo from './logo.svg';
 import './App.css';
 import Map from './components/Map.js';
-//import MapAlmeria from './components/MapAlmeria.js';
 import Menu from './components/Menu.js';
 
 class App extends Component {
@@ -11,7 +9,8 @@ class App extends Component {
     mapZoom: 14,
     menuShow: true,
     places: [],
-    lugares: []
+    lugares: [],
+    categoriesList: []
   }
 
   componentDidMount() {
@@ -23,7 +22,6 @@ class App extends Component {
   my list: https://foursquare.com/user/507697890/list/almeria (ID_list: 5b6043856bdee6002c29f447)
   help: https://developer.foursquare.com/docs/api/lists/details
   */
-
   getDetailsOfList() {
     const p = {
       list_id: '5b6043856bdee6002c29f447',
@@ -54,10 +52,26 @@ class App extends Component {
             category: place.venue.categories[0].name
           })
         });
-        console.log("Places from Foursquare's list Almeria (const lugares):");
-        console.log(lugares);
+        //console.log("Places from Foursquare's list Almeria (const lugares):");
+        //console.log(lugares);
         this.setState({lugares});
+
+        this.getCategories();
+
       })
+  }
+  
+  // get all categories from the places we got from foursquare
+  getCategories() {
+    const allCategories = [];
+    this.state.lugares.map(lugar => {return( allCategories.push(lugar.category) )});
+    //console.log(allCategories);
+
+    // remove duplicated categories
+    const catgLst = [...new Set(allCategories)];
+    //console.log(catgLst);
+    this.setState({categoriesList: catgLst});
+    //console.log(this.state.categoriesList);
   }
 
   /* Hide or show menu */
@@ -67,7 +81,7 @@ class App extends Component {
   }
 
   render() {
-    const { menuShow, lugares, mapCenter, mapZoom } = this.state;
+    const { menuShow, lugares, mapCenter, mapZoom, categoriesList } = this.state;
 
     return (
       <div className="App">
@@ -80,7 +94,14 @@ class App extends Component {
 
         <div className="App-main">
 
-          {menuShow === true ? <Menu/> : <div className="App-menu-hidden"></div>}
+          {menuShow === true ? 
+            <Menu
+              lugares={lugares}
+              categoriesList={categoriesList}
+            /> 
+            : 
+            <div className="App-menu-hidden"></div>
+          }
 
           <section className="App-map">
               <Map

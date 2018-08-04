@@ -2,14 +2,34 @@ import React, { Component } from 'react';
 
 class Menu extends Component {
 
-  render() {
-    return(
-      <div className="App-menu">
-        blablablablal dkgjldkhfls dsfhlhsdfljh
-      </div>
+	render() {
+		const { lugares, categoriesList } = this.props;
 
-    );
-  }
+		return(
+			<div className="App-menu">
+
+				<div id="filter-container">
+					<select id="categories-select">
+						<option value="all">All categories</option>
+						{categoriesList.map(cat => {
+							return(
+								<option value={cat}>{cat}</option>)
+						})}
+
+					</select>
+				</div>
+
+				<ul id="list-places">
+					{lugares.map(lugar => {
+						return(
+							<li className="list-item">{lugar.name}</li>
+						)
+					})}
+				</ul>
+			</div>
+
+		);
+	}
 };
 
 export default Menu;
