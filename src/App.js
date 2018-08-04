@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 //import logo from './logo.svg';
 import './App.css';
 import Map from './components/Map.js';
+//import MapAlmeria from './components/MapAlmeria.js';
 import Menu from './components/Menu.js';
 
 class App extends Component {
