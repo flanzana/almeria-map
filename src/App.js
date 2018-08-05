@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Map from './components/Map.js';
 import Menu from './components/Menu.js';
+import sortBy from 'sort-by';
 
 class App extends Component {
   state = {
@@ -11,7 +12,8 @@ class App extends Component {
     places: [],
     lugares: [],
     categoriesList: [],
-    selectedCategory: 'All categories'
+    selectedCategory: 'All categories',
+    selectedMarker: false
   }
 
   componentDidMount() {
@@ -37,14 +39,13 @@ class App extends Component {
         const dataRaw = data.response;
         //console.log(dataRaw);
 
-        // save items of list to array places
-        const places = dataRaw.list.listItems.items;
-        //console.log("Places (raw data from Foursquare:");
-        //console.log(places);
-        this.setState({places});
+        // save items of list to array placesRaw
+        const placesRaw = dataRaw.list.listItems.items;
+        //console.log("placesRaw (raw data from Foursquare:");
+        //console.log(placesRaw);
 
-        // save name and location to array lugares
-        const lugares = places.map(place => {
+        // save name and location to array places
+        const lugares = placesRaw.map(place => {
           return({
             id: place.id,
             name: place.venue.name,
@@ -53,12 +54,15 @@ class App extends Component {
             category: place.venue.categories[0].name
           })
         });
-        //console.log("Places from Foursquare's list Almeria (const lugares):");
-        //console.log(lugares);
+        //console.log("Places from Foursquare's list Almeria (const places):");
+        //console.log(places);
+        // sort list of places by alphabetical name
+        lugares.sort(sortBy('name'));
         this.setState({lugares});
 
         this.getCategories();
 
+        //this.filterPlaces();
       })
   }
   
@@ -72,15 +76,45 @@ class App extends Component {
     const arr = [...new Set(allCategories)];
     //console.log(arr);
     arr.push('All categories');
+
+    // sort list of categories by alphabetical name
+    arr.sort();
+       
     this.setState({categoriesList: arr});
     //console.log(this.state.categoriesList);
   }
 
-  updateCategory = (e) => {
-    this.setState({selectedCategory: e.value}); 
-    //console.log('Selected category (e.value):', e.value);
+  updateSelectedCategory = (e) => {
+    this.setState({selectedCategory: e.value});
+    this.setState({selectedMarker: false});
   }
 
+  clickMarker = (marker) => {
+    this.setState({selectedMarker: marker})
+  }
+
+/*
+  // push only places based on category to array lugares
+  filterPlaces() {
+    const { places, selectedCategory, categoriesList } = this.state;
+    console.log(places);
+    console.log(selectedCategory);
+    console.log(categoriesList);
+
+    if (selectedCategory === undefined) {
+      this.setState({lugares: places});
+    }
+  
+    const filteredArray = [];
+    places.filter(place => selectedCategory === place.category).map(place => {
+      return(
+        filteredArray.push(place)
+        this.setState({lugares: filteredArray})
+      )
+    })
+
+  }
+*/
 
   /* Hide or show menu */
   toggleMenu = () => {
@@ -88,10 +122,18 @@ class App extends Component {
     this.setState({menuShow : !menuShow})
   }
 
-  render() {
-    const { menuShow, lugares, mapCenter, mapZoom, categoriesList, selectedCategory } = this.state;
+  /* handle when place from list is clicked: open marker's info window */
+  handleClickPlace = (lugar) => {
+    console.log('You clicked a place.');
+  }
 
-    //console.log('Selected category:', selectedCategory);
+  render() {
+    const { menuShow, lugares, mapCenter, mapZoom, selectedMarker, categoriesList, selectedCategory } = this.state;
+
+    console.log('Selected category:', selectedCategory);
+
+    console.log('Selected marker:');
+    console.log(selectedMarker);
 
     return (
       <div className="App">
@@ -108,8 +150,9 @@ class App extends Component {
             <Menu
               lugares={lugares}
               categoriesList={categoriesList}
-              updateCategory={this.updateCategory}
+              updateSelectedCategory={this.updateSelectedCategory}
               selectedCategory={selectedCategory}
+              handleClickPlace={this.handleClickPlace}
             /> 
             : 
             <div className="App-menu-hidden"></div>
@@ -120,7 +163,10 @@ class App extends Component {
                 lugares={lugares}
                 mapCenter={mapCenter}
                 mapZoom={mapZoom}
+                selectedMarker={selectedMarker}
+                clickMarker={this.clickMarker}
                 selectedCategory={selectedCategory}
+                handleClickPlace={this.handleClickPlace}
               />
           </section>
         </div>

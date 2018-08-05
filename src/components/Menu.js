@@ -1,23 +1,20 @@
 import React, { Component } from 'react';
-import sortBy from 'sort-by';
 import Dropdown from 'react-dropdown';
 
 class Menu extends Component {
 
 	handleChangeCategory = (e) => {
 		//console.log(e);
-		this.props.updateCategory(e);
+		this.props.updateSelectedCategory(e);
 	}
-
+/*
+	showAll = (e) => {
+		e === 'All categories';
+		this.props.updateSelectedCategory(e);
+	}
+*/
 	render() {
-		const { lugares, categoriesList, selectedCategory } = this.props;
-
-		// sort list of places by alphabetical name
-		lugares.sort(sortBy('name'));
-		// sort list of categories by alphabetical name
-		categoriesList.sort();
-		//console.log(categoriesList);	
-		
+		const { lugares, categoriesList, selectedCategory, handleClickPlace } = this.props;
 
 		return(
 			<div className="App-menu">
@@ -35,17 +32,21 @@ class Menu extends Component {
 							/>
 						</div>
 					</div>
+					{/*<button className="clear-text" onClick={this.showAll}>
+						<span>Clear filter...</span>
+					</button>*/}
 				</div>
 
 				<ul id="list-places">
-					{selectedCategory === "All categories" && lugares.map(lugar => {
+					{selectedCategory === 'All categories' && lugares.map(lugar => {
 						return(
-							<li className="list-item">{lugar.name}</li>
+							<li className="list-item" onClick={handleClickPlace}>{lugar.name}</li>
 						)
 					})}
+
 					{lugares.filter(lugar => selectedCategory === lugar.category).map(lugar => {
 						return(
-							<li className="list-item">{lugar.name}</li>
+							<li className="list-item" onClick={handleClickPlace}>{lugar.name}</li>
 						)
 					})}
 				</ul>

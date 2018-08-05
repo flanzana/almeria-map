@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { compose, withProps, withStateHandlers } from "recompose"
+import { compose, withProps } from "recompose"
 import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps';
 import InfoWinContent from './InfoWinContent.js';
 
@@ -24,6 +24,33 @@ const AlmeriaMap = compose(
 			defaultZoom = { props.mapZoom }
 		>
 			{props.markers.filter(marker => props.selectedCategory === marker.category).map((marker, index) => {
+				const onClick = props.onClick.bind(this, marker);
+				//console.log(props.markers);
+
+				return (
+					//help: https://tomchentw.github.io/react-google-maps/#marker
+					<Marker
+						key={index}
+						title={marker.name}
+						position={marker.location}
+						onClick={onClick}
+						//animation={}
+					>
+						{/*help: https://gist.github.com/jwo/43b382fc60eb09d3a415c9953f4057f8*/}
+						{props.selectedMarker === marker && <InfoWindow>
+							{/*infowincontent is my component*/}
+							<InfoWinContent
+								title={marker.name}
+								location={marker.location}
+								address={marker.address}
+								category={marker.category}
+							/>
+						</InfoWindow>}
+					</Marker>
+				)
+			})}
+
+			{props.selectedCategory === 'All categories' && props.markers.map((marker, index) => {
 				const onClick = props.onClick.bind(this, marker)
 				//console.log(props.markers);
 
@@ -50,32 +77,6 @@ const AlmeriaMap = compose(
 				)
 			})}
 
-			{props.markers.filter(marker => props.selectedCategory === 'All categories').map((marker, index) => {
-				const onClick = props.onClick.bind(this, marker)
-				//console.log(props.markers);
-
-				return (
-					//help: https://tomchentw.github.io/react-google-maps/#marker
-					<Marker
-						key={index}
-						title={marker.name}
-						position={marker.location}
-						onClick={onClick}
-						//animation={}
-					>
-						{/*help: https://gist.github.com/jwo/43b382fc60eb09d3a415c9953f4057f8*/}
-						{props.selectedMarker === marker && <InfoWindow>
-							{/*infowincontent is my component*/}
-							<InfoWinContent
-								title={marker.name}
-								location={marker.location}
-								address={marker.address}
-								category={marker.category}
-							/>
-						</InfoWindow>}
-					</Marker>
-				)
-			})}
 		</GoogleMap>
 	)
 });
@@ -83,20 +84,14 @@ const AlmeriaMap = compose(
 
 
 class Map extends Component {
-	state = {
-		selectedMarker: false
-	}
 
-	handleClickMarker = (marker, e) => {
-		this.setState({selectedMarker: marker})
+	handleClickMarker = (marker) => {
+		//console.log(marker);
+		this.props.clickMarker(marker);
 	}
 
 	render() {
-		//const { } = this.state;
-		const { lugares, mapCenter, mapZoom, selectedCategory } = this.props;
-		const { selectedMarker } = this.state;
-
-		console.log('Selected category:', selectedCategory);
+		const { lugares, mapCenter, mapZoom, selectedMarker, selectedCategory } = this.props;
 
 		return(
 			<div id="map-container">
