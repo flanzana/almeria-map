@@ -24,7 +24,7 @@ https://colorhunt.co/palette/123079
   height: 10vh;
   min-height: 40px;
   width: 100%;
-  color: #ffffff;
+  color: #fff;
 	position: fixed;
 	top: 0;
 	z-index: 900;
@@ -52,8 +52,9 @@ https://colorhunt.co/palette/123079
 }
 
 #hamburger-icon:hover {
-  background-color: #ffffff;
+  background-color: #fff;
   color: #3f3b3b;
+  cursor: pointer;
 }
 
 
@@ -114,7 +115,7 @@ https://colorhunt.co/palette/123079
 
 /* ---------------------- M E N U ---------------------- */
 .App-menu {
-  width: 240px;
+  width: 260px;
   z-index: 800;
   background-color: #575151;
   height: 85vh;
@@ -126,17 +127,55 @@ https://colorhunt.co/palette/123079
 }
 
 #filter-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
   padding: 10px;
 }
 
-.fa-filter {
-  font-size: 1.3em;
-  color: #ffffff;
+.filter-text {
+  color: #fff;
+  font-size: 0.75em;
+  text-align: left;
+  display: none;
 }
 
+#filter-container-select {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.fa-filter {
+  color: #fff;
+  font-size: 1.4em;
+  margin-right: 5px;
+}
+
+/* Dropdown menu */
+.Dropdown-root {
+  width: 140px;
+  background-color: #fff;
+  color: #3f3b3b;
+  font-size: 0.85em;
+}
+
+.Dropdown-control {
+  padding: 5px;
+  cursor: pointer;
+}
+
+.Dropdown-menu {
+  border-top: 1px solid #b7b7b7;
+}
+
+.Dropdown-option {
+  font-style: italic;
+}
+
+.Dropdown-option:hover {
+  background-color: #feb062;
+  cursor: pointer;
+}
+
+/* List of places */
 #list-places {
   list-style: none;
   padding: 0;
@@ -144,14 +183,15 @@ https://colorhunt.co/palette/123079
 
 .list-item {
   background-color: #3f3b3b;
-  color: #ffffff;
-  font-size: 0.8em;
+  color: #fff;
+  font-size: 0.85em;
   margin: 7px;
   padding: 6px;
   border-radius: 5px;
 }
 
 .list-item:hover {
-  background-color: #ffffff;
+  background-color: #feb062;
   color: #3f3b3b;
+  cursor: pointer;
 }

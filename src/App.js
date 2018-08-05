@@ -68,11 +68,13 @@ class App extends Component {
     //console.log(allCategories);
 
     // remove duplicated categories
-    const catgLst = [...new Set(allCategories)];
-    //console.log(catgLst);
-    this.setState({categoriesList: catgLst});
+    const arr = [...new Set(allCategories)];
+    //console.log(arr);
+    arr.push('All categories');
+    this.setState({categoriesList: arr});
     //console.log(this.state.categoriesList);
   }
+
 
   /* Hide or show menu */
   toggleMenu = () => {
