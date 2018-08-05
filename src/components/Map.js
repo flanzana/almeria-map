@@ -3,7 +3,6 @@ import { compose, withProps, withStateHandlers } from "recompose"
 import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps';
 import InfoWinContent from './InfoWinContent.js';
 
-
 /* ------------ COMPOSE A MAP WITH REACT-GOOGLE-MAPS ------------
 source of help: 
 - https://www.npmjs.com/package/react-google-maps
@@ -24,8 +23,37 @@ const AlmeriaMap = compose(
 			defaultCenter = { props.mapCenter }
 			defaultZoom = { props.mapZoom }
 		>
-			{props.markers.map((marker, index) => {
+			{props.markers.filter(marker => props.selectedCategory === marker.category).map((marker, index) => {
 				const onClick = props.onClick.bind(this, marker)
+				//console.log(props.markers);
+
+				return (
+					//help: https://tomchentw.github.io/react-google-maps/#marker
+					<Marker
+						key={index}
+						title={marker.name}
+						position={marker.location}
+						onClick={onClick}
+						//animation={}
+					>
+						{/*help: https://gist.github.com/jwo/43b382fc60eb09d3a415c9953f4057f8*/}
+						{props.selectedMarker === marker && <InfoWindow>
+							{/*infowincontent is my component*/}
+							<InfoWinContent
+								title={marker.name}
+								location={marker.location}
+								address={marker.address}
+								category={marker.category}
+							/>
+						</InfoWindow>}
+					</Marker>
+				)
+			})}
+
+			{props.markers.filter(marker => props.selectedCategory === 'All categories').map((marker, index) => {
+				const onClick = props.onClick.bind(this, marker)
+				//console.log(props.markers);
+
 				return (
 					//help: https://tomchentw.github.io/react-google-maps/#marker
 					<Marker
@@ -65,17 +93,20 @@ class Map extends Component {
 
 	render() {
 		//const { } = this.state;
-		const { lugares, mapCenter, mapZoom } = this.props;
+		const { lugares, mapCenter, mapZoom, selectedCategory } = this.props;
 		const { selectedMarker } = this.state;
+
+		console.log('Selected category:', selectedCategory);
 
 		return(
 			<div id="map-container">
 				<AlmeriaMap
 					markers={lugares}
 					mapCenter={mapCenter}
-          mapZoom={mapZoom}
-          selectedMarker={selectedMarker}
-          onClick={this.handleClickMarker}
+          			mapZoom={mapZoom}
+          			selectedMarker={selectedMarker}
+          			selectedCategory={selectedCategory}
+          			onClick={this.handleClickMarker}
 				/>
 			</div>
 		);

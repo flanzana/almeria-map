@@ -10,7 +10,8 @@ class App extends Component {
     menuShow: true,
     places: [],
     lugares: [],
-    categoriesList: []
+    categoriesList: [],
+    selectedCategory: 'All categories'
   }
 
   componentDidMount() {
@@ -75,6 +76,11 @@ class App extends Component {
     //console.log(this.state.categoriesList);
   }
 
+  updateCategory = (e) => {
+    this.setState({selectedCategory: e.value}); 
+    //console.log('Selected category (e.value):', e.value);
+  }
+
 
   /* Hide or show menu */
   toggleMenu = () => {
@@ -83,7 +89,9 @@ class App extends Component {
   }
 
   render() {
-    const { menuShow, lugares, mapCenter, mapZoom, categoriesList } = this.state;
+    const { menuShow, lugares, mapCenter, mapZoom, categoriesList, selectedCategory } = this.state;
+
+    //console.log('Selected category:', selectedCategory);
 
     return (
       <div className="App">
@@ -100,6 +108,8 @@ class App extends Component {
             <Menu
               lugares={lugares}
               categoriesList={categoriesList}
+              updateCategory={this.updateCategory}
+              selectedCategory={selectedCategory}
             /> 
             : 
             <div className="App-menu-hidden"></div>
@@ -110,6 +120,7 @@ class App extends Component {
                 lugares={lugares}
                 mapCenter={mapCenter}
                 mapZoom={mapZoom}
+                selectedCategory={selectedCategory}
               />
           </section>
         </div>

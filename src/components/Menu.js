@@ -3,27 +3,21 @@ import sortBy from 'sort-by';
 import Dropdown from 'react-dropdown';
 
 class Menu extends Component {
-	state = {
-		selectedCategory: 'All categories',
-	}
 
-	handleChange = (e) => {
-		//console.log('Selected category:', e.value);
-		this.setState({selectedCategory: e.value});		
+	handleChangeCategory = (e) => {
+		//console.log(e);
+		this.props.updateCategory(e);
 	}
 
 	render() {
-		const { lugares, categoriesList } = this.props;
-		const { selectedCategory } = this.state;
+		const { lugares, categoriesList, selectedCategory } = this.props;
 
 		// sort list of places by alphabetical name
 		lugares.sort(sortBy('name'));
-
 		// sort list of categories by alphabetical name
 		categoriesList.sort();
 		//console.log(categoriesList);	
-
-		console.log(selectedCategory);
+		
 
 		return(
 			<div className="App-menu">
@@ -31,11 +25,11 @@ class Menu extends Component {
 					<span className="filter-text">Select a category:</span>
 					<div id="filter-container-select">
 						<i className="fa fa-filter" aria-hidden="true"></i>
-						<div className="drop-menu">
+						<div id="drop-menu">
 							{/* https://www.npmjs.com/package/react-dropdown */}
 							<Dropdown
 								options={categoriesList}
-								onChange={this.handleChange}
+								onChange={this.handleChangeCategory}
 								value={selectedCategory}
 								placeholder="Select a category..."
 							/>
