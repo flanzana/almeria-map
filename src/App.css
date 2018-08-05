@@ -1,3 +1,13 @@
+/*
+COLORS:
+#feb062
+#575151
+#3f3b3b
+#e7b3b3
+https://colorhunt.co/palette/123079
+#fae3e3
+*/
+
 .App {
   text-align: center;
   display: flex;
@@ -5,11 +15,12 @@
   justify-content: center;
   width: 100%;
   max-height: 100vh;
+  font-family: 'Roboto', sans-serif;
 }
 
 /* ---------------------- H E A D E R ---------------------- */
 .App-header {
-  background-color: #222;
+  background-color: #3f3b3b;
   height: 10vh;
   min-height: 40px;
   width: 100%;
@@ -24,10 +35,12 @@
 
 .App-title {
   font-size: 1.5em;
+  text-transform: uppercase;
+  letter-spacing: 3px;
 }
 
 #hamburger-icon {
-  background-color: #222;
+  background-color: #3f3b3b;
   color: #ffffff;
   font-size: 30px;
   position: absolute;
@@ -40,13 +53,13 @@
 
 #hamburger-icon:hover {
   background-color: #ffffff;
-  color: #222;
+  color: #3f3b3b;
 }
 
 
 /* ---------------------- F O O T E R ---------------------- */
 .App-footer {
-  background-color: #222;
+  background-color: #3f3b3b;
   height: 5vh;
   min-height: 20px;
   color: white;
@@ -91,21 +104,54 @@
 /* ---------------------- INFO WINDOW ---------------------- */
 .info-window {
   max-width: 200px;
+  color: #3f3b3b;
+}
+
+.info-category {
+  font-style: italic;
+  color: #575151;
 }
 
 /* ---------------------- M E N U ---------------------- */
 .App-menu {
-  width: 200px;
+  width: 240px;
   z-index: 800;
-  background-color: green;
+  background-color: #575151;
   height: 85vh;
+  overflow-y: auto;
 }
 
 .App-menu-hidden {
   width: 0;
 }
 
-.App-menu, .App-menu-hidden {
-  transition: all .5s ease-in-out;
+#filter-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 10px;
 }
 
+.fa-filter {
+  font-size: 1.3em;
+  color: #ffffff;
+}
+
+#list-places {
+  list-style: none;
+  padding: 0;
+}
+
+.list-item {
+  background-color: #3f3b3b;
+  color: #ffffff;
+  font-size: 0.8em;
+  margin: 7px;
+  padding: 6px;
+  border-radius: 5px;
+}
+
+.list-item:hover {
+  background-color: #ffffff;
+  color: #3f3b3b;
+}

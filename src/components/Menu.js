@@ -9,6 +9,7 @@ class Menu extends Component {
 			<div className="App-menu">
 
 				<div id="filter-container">
+					<i class="fa fa-filter" aria-hidden="true"></i>
 					<select id="categories-select">
 						<option value="all">All categories</option>
 						{categoriesList.map(cat => {
