@@ -23,34 +23,7 @@ const AlmeriaMap = compose(
 			defaultCenter = { props.mapCenter }
 			defaultZoom = { props.mapZoom }
 		>
-			{props.markers.filter(marker => props.selectedCategory === marker.category).map((marker, index) => {
-				const onClick = props.onClick.bind(this, marker);
-				//console.log(props.markers);
-
-				return (
-					//help: https://tomchentw.github.io/react-google-maps/#marker
-					<Marker
-						key={index}
-						title={marker.name}
-						position={marker.location}
-						onClick={onClick}
-						//animation={}
-					>
-						{/*help: https://gist.github.com/jwo/43b382fc60eb09d3a415c9953f4057f8*/}
-						{props.selectedMarker === marker && <InfoWindow>
-							{/*infowincontent is my component*/}
-							<InfoWinContent
-								title={marker.name}
-								location={marker.location}
-								address={marker.address}
-								category={marker.category}
-							/>
-						</InfoWindow>}
-					</Marker>
-				)
-			})}
-
-			{props.selectedCategory === 'All categories' && props.markers.map((marker, index) => {
+			{props.markers.map((marker, index) => {
 				const onClick = props.onClick.bind(this, marker)
 				//console.log(props.markers);
 

@@ -7,12 +7,7 @@ class Menu extends Component {
 		//console.log(e);
 		this.props.updateSelectedCategory(e);
 	}
-/*
-	showAll = (e) => {
-		e === 'All categories';
-		this.props.updateSelectedCategory(e);
-	}
-*/
+
 	render() {
 		const { lugares, categoriesList, selectedCategory, handleClickPlace } = this.props;
 
@@ -32,19 +27,10 @@ class Menu extends Component {
 							/>
 						</div>
 					</div>
-					{/*<button className="clear-text" onClick={this.showAll}>
-						<span>Clear filter...</span>
-					</button>*/}
 				</div>
 
 				<ul id="list-places">
-					{selectedCategory === 'All categories' && lugares.map(lugar => {
-						return(
-							<li className="list-item" onClick={handleClickPlace}>{lugar.name}</li>
-						)
-					})}
-
-					{lugares.filter(lugar => selectedCategory === lugar.category).map(lugar => {
+					{lugares.map(lugar => {
 						return(
 							<li className="list-item" onClick={handleClickPlace}>{lugar.name}</li>
 						)

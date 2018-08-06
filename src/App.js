@@ -45,7 +45,7 @@ class App extends Component {
         //console.log(placesRaw);
 
         // save name and location to array places
-        const lugares = placesRaw.map(place => {
+        const places = placesRaw.map(place => {
           return({
             id: place.id,
             name: place.venue.name,
@@ -57,19 +57,18 @@ class App extends Component {
         //console.log("Places from Foursquare's list Almeria (const places):");
         //console.log(places);
         // sort list of places by alphabetical name
-        lugares.sort(sortBy('name'));
-        this.setState({lugares});
+        places.sort(sortBy('name'));
+        this.setState({places});
 
         this.getCategories();
-
-        //this.filterPlaces();
+        this.setState({lugares: places});
       })
   }
   
   // get all categories from the places we got from foursquare
   getCategories() {
     const allCategories = [];
-    this.state.lugares.map(lugar => {return( allCategories.push(lugar.category) )});
+    this.state.places.map(lugar => {return( allCategories.push(lugar.category) )});
     //console.log(allCategories);
 
     // remove duplicated categories
@@ -87,34 +86,27 @@ class App extends Component {
   updateSelectedCategory = (e) => {
     this.setState({selectedCategory: e.value});
     this.setState({selectedMarker: false});
+
+    //console.log('e.value:', e.value);
+    //console.log(this.state.places);
+
+    this.filteredPlaces(e);
   }
 
   clickMarker = (marker) => {
     this.setState({selectedMarker: marker})
   }
 
-/*
-  // push only places based on category to array lugares
-  filterPlaces() {
-    const { places, selectedCategory, categoriesList } = this.state;
-    console.log(places);
-    console.log(selectedCategory);
-    console.log(categoriesList);
-
-    if (selectedCategory === undefined) {
-      this.setState({lugares: places});
+ /* updated array lugares based on selected category */
+  filteredPlaces(e) {
+    if (e.value === "All categories") {
+      this.setState({lugares: this.state.places});
+    } else {
+      const filteredPlaces = this.state.places.filter(place => e.value === place.category);
+      //console.log(filteredPlaces);
+      this.setState({lugares: filteredPlaces});
     }
-  
-    const filteredArray = [];
-    places.filter(place => selectedCategory === place.category).map(place => {
-      return(
-        filteredArray.push(place)
-        this.setState({lugares: filteredArray})
-      )
-    })
-
   }
-*/
 
   /* Hide or show menu */
   toggleMenu = () => {
@@ -130,10 +122,13 @@ class App extends Component {
   render() {
     const { menuShow, lugares, mapCenter, mapZoom, selectedMarker, categoriesList, selectedCategory } = this.state;
 
-    console.log('Selected category:', selectedCategory);
+    //console.log(categoriesList);
+    //console.log('Selected category:', selectedCategory);
+    //console.log('Selected marker:');
+    //console.log(selectedMarker);
+    //console.log("Lugares:");
+    //console.log(lugares);
 
-    console.log('Selected marker:');
-    console.log(selectedMarker);
 
     return (
       <div className="App">
