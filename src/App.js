@@ -61,6 +61,8 @@ class App extends Component {
         this.setState({places});
 
         this.getCategories();
+
+        // show all places by default on map and list
         this.setState({lugares: places});
       })
   }
@@ -93,8 +95,8 @@ class App extends Component {
     this.filteredPlaces(e);
   }
 
-  clickMarker = (marker) => {
-    this.setState({selectedMarker: marker})
+  clickMarker = (marker, e) => {
+    this.setState({selectedMarker: marker});
   }
 
  /* updated array lugares based on selected category */
@@ -115,8 +117,10 @@ class App extends Component {
   }
 
   /* handle when place from list is clicked: open marker's info window */
-  handleClickPlace = (lugar) => {
+  handleClickPlace = (e) => {
     console.log('You clicked a place.');
+    console.log(e);
+    //this.setState({selectedMarker: e});
   }
 
   render() {
@@ -147,6 +151,7 @@ class App extends Component {
               categoriesList={categoriesList}
               updateSelectedCategory={this.updateSelectedCategory}
               selectedCategory={selectedCategory}
+              clickMarker={this.clickMarker}
               handleClickPlace={this.handleClickPlace}
             /> 
             : 
@@ -161,7 +166,6 @@ class App extends Component {
                 selectedMarker={selectedMarker}
                 clickMarker={this.clickMarker}
                 selectedCategory={selectedCategory}
-                handleClickPlace={this.handleClickPlace}
               />
           </section>
         </div>

@@ -23,6 +23,7 @@ const AlmeriaMap = compose(
 			defaultCenter = { props.mapCenter }
 			defaultZoom = { props.mapZoom }
 		>
+
 			{props.markers.map((marker, index) => {
 				const onClick = props.onClick.bind(this, marker)
 				//console.log(props.markers);
@@ -37,8 +38,7 @@ const AlmeriaMap = compose(
 						//animation={}
 					>
 						{/*help: https://gist.github.com/jwo/43b382fc60eb09d3a415c9953f4057f8*/}
-						{props.selectedMarker === marker && <InfoWindow>
-							{/*infowincontent is my component*/}
+						{props.selectedMarker === marker && <InfoWindow onClick>
 							<InfoWinContent
 								title={marker.name}
 								location={marker.location}
@@ -58,9 +58,9 @@ const AlmeriaMap = compose(
 
 class Map extends Component {
 
-	handleClickMarker = (marker) => {
-		//console.log(marker);
-		this.props.clickMarker(marker);
+	handleClickMarker = (marker, e) => {
+		//console.log(e);
+		this.props.clickMarker(marker, e);
 	}
 
 	render() {

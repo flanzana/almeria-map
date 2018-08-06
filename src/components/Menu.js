@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
 import Dropdown from 'react-dropdown';
-
+import PlaceItem from './PlaceItem.js';
 class Menu extends Component {
 
 	handleChangeCategory = (e) => {
 		//console.log(e);
 		this.props.updateSelectedCategory(e);
 	}
-
+/*
+	handleClickPlace = (e) => {
+    console.log('You clicked a place.');
+		this.props.clickMarker(e);
+	}
+*/
 	render() {
 		const { lugares, categoriesList, selectedCategory, handleClickPlace } = this.props;
 
@@ -30,11 +35,13 @@ class Menu extends Component {
 				</div>
 
 				<ul id="list-places">
-					{lugares.map(lugar => {
-						return(
-							<li className="list-item" onClick={handleClickPlace}>{lugar.name}</li>
-						)
-					})}
+					{lugares.map((lugar, index) => 
+						(<PlaceItem
+							key={index}
+							lugar={lugar}
+							handleClickPlace={handleClickPlace}
+						/>)
+					)}
 				</ul>
 			</div>
 
