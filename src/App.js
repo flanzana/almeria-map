@@ -117,10 +117,9 @@ class App extends Component {
   }
 
   /* handle when place from list is clicked: open marker's info window */
-  handleClickPlace = (e) => {
+  handleClickPlace = (e, lugar) => {
     console.log('You clicked a place.');
-    console.log(e);
-    //this.setState({selectedMarker: e});
+    this.clickMarker(lugar, e);
   }
 
   render() {
@@ -140,7 +139,7 @@ class App extends Component {
           <button id="hamburger-icon" onClick={this.toggleMenu}>
             <i className="fa fa-bars" aria-hidden="true"></i>
           </button>
-          <h1 className="App-title">Almeria</h1>
+          <h1 className="App-title">Almería</h1>
         </header>
 
         <div className="App-main">
@@ -152,7 +151,7 @@ class App extends Component {
               updateSelectedCategory={this.updateSelectedCategory}
               selectedCategory={selectedCategory}
               clickMarker={this.clickMarker}
-              handleClickPlace={this.handleClickPlace}
+              onPlaceClick={this.handleClickPlace}
             /> 
             : 
             <div className="App-menu-hidden"></div>

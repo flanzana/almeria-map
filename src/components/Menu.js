@@ -7,14 +7,13 @@ class Menu extends Component {
 		//console.log(e);
 		this.props.updateSelectedCategory(e);
 	}
-/*
-	handleClickPlace = (e) => {
-    console.log('You clicked a place.');
-		this.props.clickMarker(e);
-	}
-*/
+
 	render() {
-		const { lugares, categoriesList, selectedCategory, handleClickPlace } = this.props;
+		const { onPlaceClick, lugares, categoriesList, selectedCategory } = this.props;
+
+		let onPlaceClickHandle = (e, lugar) => {
+			onPlaceClick(e, lugar)
+		}
 
 		return(
 			<div className="App-menu">
@@ -39,7 +38,7 @@ class Menu extends Component {
 						(<PlaceItem
 							key={index}
 							lugar={lugar}
-							handleClickPlace={handleClickPlace}
+							onClick={onPlaceClickHandle}
 						/>)
 					)}
 				</ul>

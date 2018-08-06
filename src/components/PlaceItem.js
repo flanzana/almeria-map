@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
 
 class PlaceItem extends Component {
+	onPlaceClick = (e, lugar) => {
+		this.props.onClick(e, lugar);
+	}
 
 	render() {
-		const { lugar, handleClickPlace } = this.props;
+		const { lugar } = this.props;
 
 		return(
 			<li
 				className="list-item"
-				onClick={handleClickPlace}
+				onClick={(e) => this.onPlaceClick(e, lugar)}
 			>
 				{lugar.name}
 			</li>
