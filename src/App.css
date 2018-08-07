@@ -9,7 +9,9 @@ https://colorhunt.co/palette/123079
 */
 body {
   width: 100%;
+  height: 100%;
   min-width: 300px;
+  min-height: 300px;
 }
 
 .App {
@@ -48,7 +50,7 @@ body {
   color: #ffffff;
   font-size: 30px;
   position: absolute;
-  top: 15px;
+  top: 2.5vh;
   left: 15px;
   z-index: 1000;
   border: none;
@@ -207,8 +209,19 @@ body {
   font-size: 0.7em;
   text-decoration: none;
   letter-spacing: 0.5px;
+  padding-bottom: 15px;
 }
 
 .source:hover {
-  color: #feb062
+  color: #feb062;
+}
+
+
+
+/* ---------- MEDIA QUERIES ------------ */
+@media screen and (max-height: 550px) {
+  #hamburger-icon {
+    top: 2px;
+    left: 2px;
+  }
 }
