@@ -7,6 +7,10 @@ COLORS:
 https://colorhunt.co/palette/123079
 #fae3e3
 */
+body {
+  width: 100%;
+  min-width: 300px;
+}
 
 .App {
   text-align: center;
@@ -115,6 +119,7 @@ https://colorhunt.co/palette/123079
 
 /* ---------------------- M E N U ---------------------- */
 .App-menu {
+  min-width: 190px;
   width: 260px;
   z-index: 800;
   background-color: #575151;
@@ -155,6 +160,7 @@ https://colorhunt.co/palette/123079
   background-color: #fff;
   color: #3f3b3b;
   font-size: 0.85em;
+  letter-spacing: 1px;
 }
 
 .Dropdown-control {
@@ -194,4 +200,15 @@ https://colorhunt.co/palette/123079
   background-color: #feb062;
   color: #3f3b3b;
   cursor: pointer;
+}
+
+.source {
+  color: #fff;
+  font-size: 0.7em;
+  text-decoration: none;
+  letter-spacing: 0.5px;
+}
+
+.source:hover {
+  color: #feb062
 }

@@ -42,6 +42,11 @@ class Menu extends Component {
 						/>)
 					)}
 				</ul>
+				<a href="https://foursquare.com/user/507697890/list/almeria"
+					target="_blank"
+					className="source">
+					Source of places: Foursquare
+				</a>
 			</div>
 
 		);
