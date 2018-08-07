@@ -24,6 +24,7 @@ class App extends Component {
   Get details of a created list from Foursquare 
   my list: https://foursquare.com/user/507697890/list/almeria (ID_list: 5b6043856bdee6002c29f447)
   help: https://developer.foursquare.com/docs/api/lists/details
+  help: https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
   */
   getDetailsOfList() {
     const p = {
@@ -65,6 +66,10 @@ class App extends Component {
         // show all places by default on map and list
         this.setState({lugares: places});
       })
+      // handle error if data is not loaded
+      .catch(function(error) {
+        alert('An error has occurred while loading data from Foursquare API. Please, refresh the page or try again later.');
+      });
   }
   
   // get all categories from the places we got from foursquare
