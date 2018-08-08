@@ -57,3 +57,4 @@ While I was working on my project, Google changed the requirements for using Goo
 - [How to add animation to marker in `react-google-maps`](https://stackoverflow.com/questions/44729776/how-can-animation-be-added-to-markers-in-react-google-maps)
 - [Display infoWindow of only selected marker](https://gist.github.com/jwo/43b382fc60eb09d3a415c9953f4057f8)
 - [Accessible dropdown menu](https://www.npmjs.com/package/react-accessible-dropdown)
+- [Listening for authentication errors from Google Maps API](https://developers.google.com/maps/documentation/javascript/events)
