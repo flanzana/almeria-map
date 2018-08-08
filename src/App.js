@@ -121,9 +121,13 @@ class App extends Component {
     this.setState({menuShow : !menuShow})
   }
 
-  /* handle when place from list is clicked: open marker's info window */
+  /* handle when place from list is clicked or keypressed: open marker's info window */
   handleClickPlace = (e, lugar) => {
     console.log('You clicked a place.');
+    this.clickMarker(lugar, e);
+  }
+  handleKeyPressPlace = (e, lugar) => {
+    console.log('You pressed a place.');
     this.clickMarker(lugar, e);
   }
 
@@ -139,12 +143,12 @@ class App extends Component {
 
 
     return (
-      <div className="App">
+      <div className="App" role="main">
         <header className="App-header">
-          <button id="hamburger-icon" onClick={this.toggleMenu}>
+          <button id="hamburger-icon" onClick={this.toggleMenu} tabIndex="0">
             <i className="fa fa-bars" aria-hidden="true"></i>
           </button>
-          <h1 className="App-title">Almería</h1>
+          <h1 className="App-title" tabIndex="0">Almería</h1>
         </header>
 
         <div className="App-main">
@@ -157,12 +161,14 @@ class App extends Component {
               selectedCategory={selectedCategory}
               clickMarker={this.clickMarker}
               onPlaceClick={this.handleClickPlace}
+              onPlaceKeyPress={this.handleKeyPressPlace}
+              tabIndex="0"
             /> 
             : 
-            <div className="App-menu-hidden"></div>
+            <div className="App-menu-hidden" tabIndex="-1" aria-hidden="true"></div>
           }
 
-          <section className="App-map">
+          <section className="App-map" role="application" tabIndex="0">
               <Map
                 lugares={lugares}
                 mapCenter={mapCenter}
@@ -175,7 +181,7 @@ class App extends Component {
         </div>
 
         <footer className="App-footer">
-          <p className="footer-text">Coded with &#10084; by Žana Flander &copy; 2018</p>
+          <p className="footer-text" tabIndex="0">Coded with &#10084; by Žana Flander &copy; 2018</p>
         </footer>
       </div>
     );

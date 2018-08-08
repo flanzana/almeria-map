@@ -5,6 +5,10 @@ class PlaceItem extends Component {
 		this.props.onClick(e, lugar);
 	}
 
+	onPlaceKeyPress = (e, lugar) => {
+		this.props.onKeyPress(e, lugar);
+	}
+
 	render() {
 		const { lugar } = this.props;
 
@@ -12,6 +16,9 @@ class PlaceItem extends Component {
 			<li
 				className="list-item"
 				onClick={(e) => this.onPlaceClick(e, lugar)}
+				onKeyPress={(e) => this.onPlaceKeyPress(e, lugar)}
+				tabIndex="0"
+				aria-label={`Button to the place ${lugar.name}`}
 			>
 				{lugar.name}
 			</li>
