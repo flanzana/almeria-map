@@ -4,6 +4,13 @@ import Map from './components/Map.js';
 import Menu from './components/Menu.js';
 import sortBy from 'sort-by';
 
+// handle an authentication failure of Google Maps.
+// help: https://developers.google.com/maps/documentation/javascript/events
+window.gm_authFailure = () => {
+  const msg = document.getElementById('map-container');
+  msg.innerHTML = `<h2>Authentication failure!</h2><p>Please, check Console for possible error or try again later.<p>`;
+}
+
 class App extends Component {
   state = {
     mapCenter: { lat: 36.833045, lng: -2.458947 },
