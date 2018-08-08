@@ -131,6 +131,11 @@ class App extends Component {
     this.clickMarker(lugar, e);
   }
 
+  /* when closing infowindow, none marker is selected */
+  closeInfoWin = () => {
+    this.setState({selectedMarker: false});
+  }
+
   render() {
     const { menuShow, lugares, mapCenter, mapZoom, selectedMarker, categoriesList, selectedCategory } = this.state;
 
@@ -176,6 +181,7 @@ class App extends Component {
                 selectedMarker={selectedMarker}
                 clickMarker={this.clickMarker}
                 selectedCategory={selectedCategory}
+                closeInfoWin={this.closeInfoWin}
               />
           </section>
         </div>

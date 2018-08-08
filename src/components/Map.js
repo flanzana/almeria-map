@@ -17,8 +17,8 @@ const AlmeriaMap = compose(
 		containerElement: <div className="container-element"/>,
 		mapElement: <div className="map-element"/>
 	}),
-	withScriptjs,
-	withGoogleMap
+	withScriptjs, //withScriptjs is using loadingElement to get rendered while it is async-loading the google scripts. No need to include <script> tag in index.html.
+	withGoogleMap //withGoogleMap is using googleMapURL to download the script from, including the API key
 )(props => {
 	return (
 		<GoogleMap
@@ -42,7 +42,7 @@ const AlmeriaMap = compose(
 						}
 					>
 						{/*help: https://gist.github.com/jwo/43b382fc60eb09d3a415c9953f4057f8*/}
-						{props.selectedMarker === marker && <InfoWindow onClick>
+						{props.selectedMarker === marker && <InfoWindow onCloseClick={props.closeInfoWin}>
 							<InfoWinContent
 								title={marker.name}
 								location={marker.location}
@@ -69,7 +69,7 @@ class Map extends Component {
 	}
 
 	render() {
-		const { lugares, mapCenter, mapZoom, selectedMarker, selectedCategory } = this.props;
+		const { lugares, mapCenter, mapZoom, selectedMarker, selectedCategory, closeInfoWin } = this.props;
 
 		return(
 			<div id="map-container">
@@ -80,6 +80,7 @@ class Map extends Component {
           			selectedMarker={selectedMarker}
           			selectedCategory={selectedCategory}
           			onClick={this.handleClickMarker}
+          			closeInfoWin={closeInfoWin}
 				/>
 			</div>
 		);
