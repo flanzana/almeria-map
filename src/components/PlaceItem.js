@@ -19,6 +19,7 @@ class PlaceItem extends Component {
 				onKeyPress={(e) => this.onPlaceKeyPress(e, lugar)}
 				tabIndex="0"
 				aria-label={`Button to the place ${lugar.name}`}
+				role="menuitem"
 			>
 				{lugar.name}
 			</li>
