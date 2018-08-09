@@ -52,8 +52,9 @@ class Menu extends Component {
 				</ul>
 				<a href="https://foursquare.com/user/507697890/list/almeria"
 					target="_blank"
+					rel="noopener noreferrer" // Using target="_blank" without rel="noopener noreferrer" is a security risk.
 					className="source"
-					role="link"
+					//role="link" //warning: The element a has an implicit role of link. Defining this explicitly is redundant and should be avoided
 					tabIndex="0"
 					aria-label="Link to source of places on Foursquare">
 					Source of places: Foursquare
