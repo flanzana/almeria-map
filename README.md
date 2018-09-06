@@ -15,6 +15,10 @@ Project Neighborhood map is the final project of nanodegree Front-End Web Develo
 
 
 ## Installation
+- Open [https://flanzana.github.io/almeria-map/](https://flanzana.github.io/almeria-map/) in your browser (Google Chrome is recommended) and enjoy the app.
+
+or
+
 - Clone the project with `git clone https://github.com/flanzana/almeria-map.git`.
 - `cd` to the project folder and run `npm install` and `npm start`.
 - Open [http://localhost:3000](http://localhost:3000) in your browser (Google Chrome is recommended) and enjoy the app.
@@ -61,3 +65,4 @@ While I was working on my project, Google changed the requirements for using Goo
 - [Accessible dropdown menu](https://www.npmjs.com/package/react-accessible-dropdown)
 - [Listening for authentication errors from Google Maps API](https://developers.google.com/maps/documentation/javascript/events)
 - [How to run an app in production mode](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#deployment)
+- [How to deploy a React app on GitHub pages](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#github-pages)
